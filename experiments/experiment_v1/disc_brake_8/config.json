@@ -1,0 +1,16 @@
+{
+    "iterations": 100,
+    "n_initial_points": 10,
+    "function_name": "disc_brake",
+    "batch_size": 1,
+    "n_w": 8,
+    "alpha":  0.95,
+    "perturbation_kwargs": {
+        "method": "uniform", "delta": [1.25, 1.75, 100.0, 0.0]
+    },
+    "mc_samples": 256,
+    "optimization_kwargs": {},
+    "hv_n_w": 512,
+    "mvar_ref_point": [-5.89, -3.27],
+    "device": "cuda"
+}

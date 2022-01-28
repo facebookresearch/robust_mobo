@@ -1,0 +1,16 @@
+{
+    "iterations": 100,
+    "n_initial_points": 16,
+    "function_name": "penicillin",
+    "batch_size": 1,
+    "n_w": 32,
+    "alpha":  0.8,
+    "perturbation_kwargs": {
+        "method": "sobol-normal", "std_dev": [1.8000, 0.5385, 0.0500, 0.3590, 0.0049, 2.0000, 0.0150]
+    },
+    "mc_samples": 256,
+    "optimization_kwargs": {},
+    "hv_n_w": 512,
+    "mvar_ref_point": [5.657, -64.1, -340.0],
+    "device": "cuda"
+}

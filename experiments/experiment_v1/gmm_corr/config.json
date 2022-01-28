@@ -1,0 +1,16 @@
+{
+    "iterations": 100,
+    "n_initial_points": 6,
+    "function_name": "gmm2",
+    "batch_size": 1,
+    "n_w": 32,
+    "alpha":  0.9,
+    "perturbation_kwargs": {
+        "method": "sobol-mvn", "covariance_matrix": [[0.0025, -0.002],[-0.002, 0.0025]]
+    },
+    "mc_samples": 256,
+    "optimization_kwargs": {},
+    "hv_n_w": 512,
+    "mvar_ref_point": [0.2727, 0.2583],
+    "device": "cuda"
+}
