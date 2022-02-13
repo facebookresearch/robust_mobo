@@ -61,10 +61,8 @@ from robust_mobo.monte_carlo import (
 from robust_mobo.multi_objective_risk_measures import MultiOutputExpectation, MVaR
 from robust_mobo.rffs import get_gp_sample_w_transforms
 from robust_mobo.single_objective_monte_carlo import qNoisyExpectedImprovement
-from robust_mobo.test_functions.disc_brake import DiscBrake
 from robust_mobo.test_functions.gmm import GMM
-from robust_mobo.test_functions.penicillin import Penicillin
-from robust_mobo.test_functions.toy import Toy
+from botorch.test_functions.multi_objective import DiscBrake, Penicillin, ToyRobust
 from robust_mobo.utils import (
     get_chebyshev_scalarization,
     get_objective_after_feasibility_weighting,
@@ -947,6 +945,6 @@ def get_problem(name: str) -> MultiObjectiveTestProblem:
     elif name == "penicillin":
         return Penicillin(negate=True)
     elif name == "toy":
-        return Toy()
+        return ToyRobust(negate=True)
     else:
         raise ValueError(f"Unknown function name: {name}!")
