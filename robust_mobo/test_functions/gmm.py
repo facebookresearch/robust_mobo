@@ -1,3 +1,17 @@
+#!/usr/bin/env python3
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+#
+# This source code is licensed under the MIT license found in the
+# LICENSE file in the root directory of this source tree.
+
+r"""
+GMM test problem.
+
+This is a multi-objective extension that is adapted from
+the single objective version available at:
+https://github.com/boschresearch/NoisyInputEntropySearch/blob/master/core/util/objectives.py
+"""
+
 import numpy as np
 from typing import Optional
 import torch
@@ -10,9 +24,6 @@ from torch import Tensor
 
 
 def gmm_2d(x, num_objectives: int = 2):
-    r"""This is a multi-objective variant of the GMM problem
-    in https://github.com/boschresearch/NoisyInputEntropySearch/blob/master/core/util/objectives.py
-    """
     if num_objectives not in (2, 3, 4):
         raise UnsupportedError("GMM only currently supports 2 to 4 objectives.")
     x = np.atleast_2d(x)

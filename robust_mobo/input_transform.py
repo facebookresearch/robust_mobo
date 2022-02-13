@@ -1,4 +1,14 @@
-r"""Modified from original BoTorch implementation."""
+#!/usr/bin/env python3
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+#
+# This source code is licensed under the MIT license found in the
+# LICENSE file in the root directory of this source tree.
+
+r"""
+Input Transformations.
+
+Modified from original BoTorch implementation.
+"""
 
 from typing import Optional, Union, Callable
 

@@ -1,4 +1,14 @@
-r"""
+#!/usr/bin/env python3
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+#
+# This source code is licensed under the MIT license found in the
+# LICENSE file in the root directory of this source tree.
+
+r"""Disc Brake Problem.
+
+TODO: Move this upstream.
+
+
 References
 
 .. [Tanabe2020]
@@ -6,8 +16,6 @@ References
     optimization problem suite, Applied Soft Computing,Volume 89, 2020.
 """
 
-import math
-from typing import Optional
 import torch
 from botorch.test_functions.base import (
     ConstrainedBaseTestProblem,

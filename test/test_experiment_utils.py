@@ -1,11 +1,17 @@
+#!/usr/bin/env python3
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+#
+# This source code is licensed under the MIT license found in the
+# LICENSE file in the root directory of this source tree.
+
 from copy import deepcopy
 from unittest import mock, TestCase
 
 import torch
+from botorch.acquisition.monte_carlo import qSimpleRegret
 from botorch.acquisition.multi_objective.multi_output_risk_measures import (
     IndependentVaR,
 )
-from botorch.acquisition.monte_carlo import qSimpleRegret
 from botorch.acquisition.risk_measures import VaR
 from botorch.models import SingleTaskGP, FixedNoiseGP, ModelListGP
 from botorch.models.deterministic import DeterministicModel
@@ -15,9 +21,7 @@ from botorch.utils import apply_constraints
 from botorch.utils.testing import MockModel, MockPosterior
 from gpytorch import ExactMarginalLogLikelihood
 from gpytorch.mlls import SumMarginalLogLikelihood
-
 from robust_mobo.ch_var_ucb import ChVUCB
-from robust_mobo.input_transform import InputPerturbation
 from robust_mobo.experiment_utils import (
     generate_initial_data,
     initialize_model,
@@ -32,6 +36,7 @@ from robust_mobo.experiment_utils import (
     get_constraint_indexer,
     get_infeasible_cost,
 )
+from robust_mobo.input_transform import InputPerturbation
 from robust_mobo.monte_carlo import (
     qNoisyExpectedHypervolumeImprovement,
     qExpectedHypervolumeImprovement,

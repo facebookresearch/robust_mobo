@@ -1,10 +1,16 @@
+#!/usr/bin/env python3
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+#
+# This source code is licensed under the MIT license found in the
+# LICENSE file in the root directory of this source tree.
+
 import json
 import os
 import sys
-import torch
-from botorch.utils.multi_objective import is_non_dominated
 
+import torch
 from approximate_max_hv_run import construct_mvar_hv, max_hv_dir, exp_dir
+from botorch.utils.multi_objective import is_non_dominated
 
 
 def batch_evaluate_mvar(problem, batch_i):

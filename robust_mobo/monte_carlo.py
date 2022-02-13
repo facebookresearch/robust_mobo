@@ -1,3 +1,9 @@
+#!/usr/bin/env python3
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+#
+# This source code is licensed under the MIT license found in the
+# LICENSE file in the root directory of this source tree.
+
 r"""
 Monte-Carlo Acquisition Functions for Multi-objective Bayesian optimization.
 Modified from original BoTorch implementations.
@@ -21,12 +27,10 @@ import warnings
 from abc import abstractmethod
 from copy import deepcopy
 from itertools import combinations
-from math import pi, ceil
 from typing import Any, Callable, List, Optional, Union
 
 import gpytorch.settings as gpt_settings
 import torch
-from botorch.acquisition import MCAcquisitionObjective
 from botorch.acquisition.acquisition import AcquisitionFunction
 from botorch.acquisition.multi_objective.objective import (
     IdentityMCMultiOutputObjective,
@@ -37,14 +41,10 @@ from botorch.exceptions.warnings import BotorchWarning
 from botorch.models.model import Model
 from botorch.models.model_list_gp_regression import ModelListGP
 from botorch.models.multitask import MultiTaskGP
-from botorch.posteriors import GPyTorchPosterior, DeterministicPosterior
+from botorch.posteriors import GPyTorchPosterior
 from botorch.posteriors.posterior import Posterior
 from botorch.sampling.samplers import MCSampler, SobolQMCNormalSampler
 from botorch.utils.low_rank import extract_batch_covar, sample_cached_cholesky
-from botorch.utils.multi_objective import is_non_dominated
-from botorch.utils.multi_objective.box_decompositions.box_decomposition import (
-    BoxDecomposition,
-)
 from botorch.utils.multi_objective.box_decompositions.box_decomposition_list import (
     BoxDecompositionList,
 )
@@ -59,22 +59,16 @@ from botorch.utils.multi_objective.box_decompositions.utils import (
     _pad_batch_pareto_frontier,
 )
 from botorch.utils.objective import apply_constraints_nonnegative_soft
-from botorch.utils.sampling import sample_hypersphere
+from botorch.utils.torch import BufferDict
 from botorch.utils.transforms import (
     concatenate_pending_points,
     match_batch_shape,
     t_batch_mode_transform,
 )
-from botorch.utils.torch import BufferDict
-from gpytorch.distributions.multitask_multivariate_normal import (
-    MultitaskMultivariateNormal,
-)
 from gpytorch.utils.errors import NotPSDError, NanError
-from scipy.special import gamma
-from torch import Tensor
-
 from robust_mobo.input_transform import InputPerturbation
-from robust_mobo.utils import prune_inferior_points_multi_objective, MAX_BYTES
+from robust_mobo.utils import prune_inferior_points_multi_objective
+from torch import Tensor
 
 
 class MultiObjectiveMCAcquisitionFunction(AcquisitionFunction):

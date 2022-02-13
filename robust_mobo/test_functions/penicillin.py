@@ -1,4 +1,14 @@
+#!/usr/bin/env python3
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+#
+# This source code is licensed under the MIT license found in the
+# LICENSE file in the root directory of this source tree.
+
 r"""
+A Penicillin production optimization problem
+
+This implementation is adapted from https://github.com/HarryQL/TuRBO-Penicillin.
+
 References
 
 .. [Liang]
@@ -102,7 +112,9 @@ def penicillin_vectorized(X_input: Tensor) -> Tensor:
 
 
 class Penicillin(MultiObjectiveTestProblem):
-    r"""A penicillin production simulator from [Liang]_. The goal is to
+    r"""A penicillin production simulator from [Liang]_.
+
+    The goal is to
     maximize the penicillin yield while minimizing time to ferment and the
     CO2 byproduct.
 

@@ -1,7 +1,12 @@
+#!/usr/bin/env python3
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+#
+# This source code is licensed under the MIT license found in the
+# LICENSE file in the root directory of this source tree.
+
 from unittest import TestCase
 
 import torch
-
 from robust_mobo.experiment_utils import get_perturbations
 from robust_mobo.input_transform import InputPerturbation
 
