@@ -1,3 +1,9 @@
+#!/usr/bin/env python3
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+#
+# This source code is licensed under the MIT license found in the
+# LICENSE file in the root directory of this source tree.
+
 from __future__ import annotations
 
 import math
@@ -11,14 +17,14 @@ from botorch.acquisition.multi_objective.objective import (
     IdentityMCMultiOutputObjective,
     MCMultiOutputObjective,
 )
-from botorch.acquisition.objective import MCAcquisitionObjective, GenericMCObjective
+from botorch.acquisition.objective import GenericMCObjective
 from botorch.exceptions.errors import UnsupportedError
 from botorch.exceptions.warnings import SamplingWarning
 from botorch.models.model import Model
 from botorch.sampling.samplers import IIDNormalSampler, SobolQMCNormalSampler
 from botorch.utils import apply_constraints
 from botorch.utils.multi_objective.pareto import is_non_dominated
-from botorch.utils.transforms import normalize_indices, normalize
+from botorch.utils.transforms import normalize
 from torch import Tensor
 from torch.quasirandom import SobolEngine
 
@@ -92,7 +98,6 @@ def prune_inferior_points_multi_objective(
         posterior = model.posterior(X=X)
     test_sample = posterior.rsample()
     obj_vals = objective(test_sample, X=X)
-    n_w = obj_vals.shape[-2] // X.shape[-2]
     if obj_vals.ndim > 3:
         if obj_vals.ndim == 4 and marginalize_dim is not None:
             obj_vals = obj_vals.mean(dim=marginalize_dim)
@@ -130,7 +135,9 @@ def prune_inferior_points_multi_objective(
         pareto_mask = is_non_dominated(obj_vals, deduplicate=False) & (
             obj_vals > ref_point
         ).all(dim=-1)
-        pareto_mask = pareto_mask.view(*pareto_mask.shape[:-1], -1, n_w).any(dim=-1)
+        # note this requires that MVaR does not filter dominated points
+        obj_per_x = obj_vals.shape[-2]//X.shape[-2]
+        pareto_mask = pareto_mask.view(*pareto_mask.shape[:-1], -1, obj_per_x).any(dim=-1)
         all_counts += pareto_mask.to(dtype=all_counts.dtype).sum(dim=0)
         total_samples += mini_batch_size
         # I observe reserved mem going up while allocated is roughly constant.
@@ -342,6 +349,9 @@ def get_infeasible_cost(
 
     Computes an infeasible cost `M` such that `-M < min_x f(x)` almost always,
         so that feasible points are preferred.
+
+    Note: the only difference between this method and the botorch version is that
+    this computes
 
     Args:
         X: A `n x d` Tensor of `n` design points to use in evaluating the

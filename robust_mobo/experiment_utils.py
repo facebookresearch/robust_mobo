@@ -836,7 +836,8 @@ def get_acqf(
         elif "independent_var" in label:
             objective = IndependentVaR(alpha=var.alpha, n_w=var.n_w)
         elif "mvar" in label:
-            objective = MVaR(n_w=var.n_w, alpha=var.alpha)
+            # we cannot easily prune X_baseline if we filter dominated
+            objective = MVaR(n_w=var.n_w, alpha=var.alpha, filter_dominated=False)
         else:
             objective = None
         acq_func = get_nehvi(
