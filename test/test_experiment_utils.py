@@ -416,7 +416,7 @@ class TestExperimentUtils(TestCase):
                     self.assertEqual(acqf(x[:2].unsqueeze(-2)).shape, torch.Size([2]))
 
             # test constraints for nehvi
-            if "nehvi" in label and "anehvi" not in label:
+            if "nehvi" in label:
                 with mock.patch(
                     "robust_mobo.utils.apply_constraints",
                     wraps=apply_constraints,
