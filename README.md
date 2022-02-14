@@ -2,7 +2,7 @@
 
 This is the code associated with the paper "Robust Multi-Objective Bayesian Optimization Under Input Noise."
 
-If you find this code useful please cite it as
+Please cite our work if you find our code useful.
 
     @misc{daulton2022robust,
           title={Robust Multi-Objective Bayesian Optimization Under Input Noise}, 
