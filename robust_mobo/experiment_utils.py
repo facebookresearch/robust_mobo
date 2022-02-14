@@ -1,4 +1,12 @@
-r"""Some utilities to help reduce the boilerplate code in the experiments."""
+#!/usr/bin/env python3
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+#
+# This source code is licensed under the MIT license found in the
+# LICENSE file in the root directory of this source tree.
+
+r"""
+Utilities for experiments.
+"""
 
 from typing import Callable, Dict, Optional, Tuple, Union, List
 

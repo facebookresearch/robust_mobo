@@ -1,3 +1,9 @@
+#!/usr/bin/env python3
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+#
+# This source code is licensed under the MIT license found in the
+# LICENSE file in the root directory of this source tree.
+
 from __future__ import annotations
 
 import math
@@ -11,14 +17,14 @@ from botorch.acquisition.multi_objective.objective import (
     IdentityMCMultiOutputObjective,
     MCMultiOutputObjective,
 )
-from botorch.acquisition.objective import MCAcquisitionObjective, GenericMCObjective
+from botorch.acquisition.objective import GenericMCObjective
 from botorch.exceptions.errors import UnsupportedError
 from botorch.exceptions.warnings import SamplingWarning
 from botorch.models.model import Model
 from botorch.sampling.samplers import IIDNormalSampler, SobolQMCNormalSampler
 from botorch.utils import apply_constraints
 from botorch.utils.multi_objective.pareto import is_non_dominated
-from botorch.utils.transforms import normalize_indices, normalize
+from botorch.utils.transforms import normalize
 from torch import Tensor
 from torch.quasirandom import SobolEngine
 

@@ -1,15 +1,19 @@
+#!/usr/bin/env python3
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+#
+# This source code is licensed under the MIT license found in the
+# LICENSE file in the root directory of this source tree.
+
 import json
 import os
 import sys
 
 import torch
-import numpy as np
-from botorch.utils.transforms import unnormalize
 from botorch.test_functions.base import ConstrainedBaseTestProblem
-from torch import Tensor
-
-from robust_mobo.experiment_utils import get_problem
+from botorch.utils.transforms import unnormalize
 from robust_mobo.experiment_utils import MVaRHV, get_perturbations
+from robust_mobo.experiment_utils import get_problem
+from torch import Tensor
 
 exp_dir = "../experiments/experiment_v1/"
 max_hv_dir = "./max_hvs/"

@@ -1,6 +1,0 @@
-{
-    "iterations": 300,
-    "fit_frequency": 10,
-    "alpha":  0.8,
-    "function_name": "branin"
-}

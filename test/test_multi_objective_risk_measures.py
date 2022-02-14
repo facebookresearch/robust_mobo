@@ -1,10 +1,15 @@
+#!/usr/bin/env python3
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+#
+# This source code is licensed under the MIT license found in the
+# LICENSE file in the root directory of this source tree.
+
 from unittest import TestCase
 
 import torch
 from botorch.utils.multi_objective import is_non_dominated
-from torch import Tensor
-
 from robust_mobo.multi_objective_risk_measures import MVaR
+from torch import Tensor
 
 
 class TestMVaR(TestCase):

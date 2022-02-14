@@ -1,9 +1,20 @@
+#!/usr/bin/env python3
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+#
+# This source code is licensed under the MIT license found in the
+# LICENSE file in the root directory of this source tree.
+
 r"""
 Batch acquisition functions using the reparameterization trick in combination
 with (quasi) Monte-Carlo sampling. See [Rezende2014reparam]_, [Wilson2017reparam]_ and
 [Balandat2020botorch]_.
+
 Modified from BoTorch implementations.
 
+TODO: use upstream version when
+https://github.com/pytorch/botorch/pull/1056 is merged.
+
+References
 .. [Rezende2014reparam]
     D. J. Rezende, S. Mohamed, and D. Wierstra. Stochastic backpropagation and
     approximate inference in deep generative models. ICML 2014.
