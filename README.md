@@ -19,7 +19,7 @@ From the base `robust_mobo` directory run:
 The code is structured in three parts.
 - The utilities for constructing the acquisition functions and other helper methods are defined in `robust_mobo/`.
 - The notebooks for analyzing the experiment output and constructing the plots presented in the paper are found under `notebooks/`.
-- The experiments are found in and ran from within `experiments/experiment_v1/`. The `main.py` is used to run the experiments, and the experiment configurations are found in the `config.json` file of each sub-directory. 
+- The experiments are found in and ran from within `experiments/experiment_v1/`. The `main.py` is used to run the experiments, and the experiment configurations are found in the `config.json` file of each sub-directory.
 
 The individual experiment outputs were left out to avoid inflating the file size. An aggregate output of all experiments is presented in `notebooks/final_outputs.csv`.
 
@@ -46,7 +46,6 @@ algorithms = [
     ("ref_ch-var-nei", "MARS-NEI"),
     ("ref_mvar_nehvi", "MVaR-NEHVI"),
     ("ref_mvar_nehvi_rff", "MVaR-NEHVI-RFF"),
-    ("cas", "Constraint Active Search"),
 ]
 ```
 

@@ -687,46 +687,6 @@ def get_ch_var_TS(
     return acq_func
 
 
-def get_cas(
-    model: ModelListGP,
-    mvar_ref_point: Tensor,
-    punchout_radius: float,
-    tkwargs: dict,
-    num_samples: int = 512,
-) -> ExpectedCoverageImprovement:
-    r"""Construct the expected improvement acquisition function.
-    The goal is to cover the space dominating the MVaR ref point
-    and satisfying the outcome constraints.
-
-    Args:
-        model: A ModelListGP modeling the outcomes and the constraints.
-        mvar_ref_point: The MVaR ref point.
-        punchout_radius: Positive value defining the desired minimum
-            distance between points.
-        tkwargs: Tensor arguments.
-        num_samples: Number of samples for MC integration
-
-    Returns:
-        An ExpectedCoverageImprovement acquisition function.
-    """
-    input_dim = model.models[0].train_inputs[0].shape[-1]
-    standard_bounds = torch.zeros(2, input_dim, **tkwargs)
-    standard_bounds[1] = 1.0
-    constraints = []
-    for i, ref in enumerate(mvar_ref_point):
-        constraints.append(("gt", ref))
-    for i in range(len(mvar_ref_point), model.num_outputs):
-        constraints.append(("gt", 0.0))
-    return ExpectedCoverageImprovement(
-        model=model,
-        constraints=constraints,
-        punchout_radius=punchout_radius,
-        bounds=standard_bounds,
-        tkwargs=tkwargs,
-        num_samples=num_samples,
-    )
-
-
 def get_acqf(
     label: str,
     mc_samples: int,
@@ -772,7 +732,7 @@ def get_acqf(
     elif label == "mvar_nehvi":
         mc_samples = max(1, int(mc_samples / 8))
     sampler = SobolQMCNormalSampler(num_samples=mc_samples)
-    if label not in ("nparego", "nehvi", "ts", "nehvi_rff", "cas"):
+    if label not in ("nparego", "nehvi", "ts", "nehvi_rff"):
         intf = InputPerturbation(
             perturbation_set=perturbation_set, **input_tf_kwargs
         ).eval()
@@ -857,14 +817,6 @@ def get_acqf(
             objective=objective,
             ref_point=mvar_ref_point if "mvar" in label else None,
             ref_aware=ref_aware,
-        )
-    elif "cas" in label:
-        acq_func = get_cas(
-            model=model,
-            mvar_ref_point=mvar_ref_point,
-            punchout_radius=kwargs.get("punchout_radius"),
-            tkwargs=tkwargs,
-            num_samples=kwargs.get("cas_num_samples", 512),
         )
     else:
         raise NotImplementedError

@@ -50,7 +50,6 @@ supported_labels = [
     "ref_mvar_nehvi_rff",
     "ref_mvar_nehvi",
     "sobol",
-    "cas",
 ]
 
 
@@ -253,8 +252,6 @@ def main(
                 pr = perturbation_kwargs.get(
                     "std_dev", None
                 ) or perturbation_kwargs.get("delta", None)
-                if pr is None and label == "cas":
-                    raise NotImplementedError
                 pr = torch.tensor(pr, **tkwargs)
                 bounds_range = base_function.bounds[1] - base_function.bounds[0]
                 pr = pr / bounds_range
