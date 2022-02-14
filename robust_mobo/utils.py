@@ -135,8 +135,10 @@ def prune_inferior_points_multi_objective(
         pareto_mask = is_non_dominated(obj_vals, deduplicate=False) & (
             obj_vals > ref_point
         ).all(dim=-1)
-        obj_per_x = obj_vals.shape[-2]//X.shape[-2]
-        pareto_mask = pareto_mask.view(*pareto_mask.shape[:-1], -1, obj_per_x).any(dim=-1)
+        obj_per_x = obj_vals.shape[-2] // X.shape[-2]
+        pareto_mask = pareto_mask.view(*pareto_mask.shape[:-1], -1, obj_per_x).any(
+            dim=-1
+        )
         all_counts += pareto_mask.to(dtype=all_counts.dtype).sum(dim=0)
         total_samples += mini_batch_size
         # I observe reserved mem going up while allocated is roughly constant.
