@@ -1,0 +1,16 @@
+{
+    "iterations": 100,
+    "n_initial_points": 6,
+    "function_name": "gmm4",
+    "batch_size": 1,
+    "n_w": 32,
+    "alpha":  0.8,
+    "perturbation_kwargs": {
+        "method": "sobol-normal", "std_dev": 0.05
+    },
+    "mc_samples": 256,
+    "optimization_kwargs": {},
+    "hv_n_w": 256,
+    "mvar_ref_point": [0.0322, -0.0398, 0.1168, -0.0023],
+    "device": "cuda"
+}

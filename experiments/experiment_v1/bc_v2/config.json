@@ -1,0 +1,16 @@
+{
+    "iterations": 100,
+    "n_initial_points": 6,
+    "function_name": "constrained_branin_currin",
+    "batch_size": 1,
+    "n_w": 32,
+    "alpha":  0.7,
+    "perturbation_kwargs": {
+        "method": "sobol-normal", "std_dev": [0.05, 0.05]
+    },
+    "mc_samples": 256,
+    "optimization_kwargs": {},
+    "hv_n_w": 512,
+    "mvar_ref_point": [-195.4667,  -12.4984],
+    "device": "cuda"
+}
