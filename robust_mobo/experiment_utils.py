@@ -766,8 +766,6 @@ def get_acqf(
     ref_aware = "ref" in label
     if "rff" in label:
         mc_samples = 1
-    elif label == "mvar_nehvi":
-        mc_samples = max(1, int(mc_samples / 8))
     sampler = SobolQMCNormalSampler(num_samples=mc_samples)
     if label not in ("nparego", "nehvi", "ts", "nehvi_rff", "cas"):
         intf = InputPerturbation(
