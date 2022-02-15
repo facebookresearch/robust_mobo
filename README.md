@@ -1,8 +1,10 @@
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+
 # Robust Multi-Objective Bayesian Optimization Under Input Noise
 
 This is the code associated with the paper "Robust Multi-Objective Bayesian Optimization Under Input Noise."
 
-Please cite our work if you find our code useful.
+Please cite our work if you find it useful.
 
     @misc{daulton2022robust,
           title={Robust Multi-Objective Bayesian Optimization Under Input Noise}, 
@@ -97,3 +99,6 @@ experiments = {
     "gmm_4obj_08": "GMM, M=4, alpha=0.8",
 }
 ```
+
+## License
+This repository is MIT licensed, as found in the [LICENSE](LICENSE) file.
