@@ -98,7 +98,6 @@ def prune_inferior_points_multi_objective(
         posterior = model.posterior(X=X)
     test_sample = posterior.rsample()
     obj_vals = objective(test_sample, X=X)
-    n_w = obj_vals.shape[-2] // X.shape[-2]
     if obj_vals.ndim > 3:
         if obj_vals.ndim == 4 and marginalize_dim is not None:
             obj_vals = obj_vals.mean(dim=marginalize_dim)
@@ -136,7 +135,10 @@ def prune_inferior_points_multi_objective(
         pareto_mask = is_non_dominated(obj_vals, deduplicate=False) & (
             obj_vals > ref_point
         ).all(dim=-1)
-        pareto_mask = pareto_mask.view(*pareto_mask.shape[:-1], -1, n_w).any(dim=-1)
+        obj_per_x = obj_vals.shape[-2] // X.shape[-2]
+        pareto_mask = pareto_mask.view(*pareto_mask.shape[:-1], -1, obj_per_x).any(
+            dim=-1
+        )
         all_counts += pareto_mask.to(dtype=all_counts.dtype).sum(dim=0)
         total_samples += mini_batch_size
         # I observe reserved mem going up while allocated is roughly constant.
@@ -349,6 +351,12 @@ def get_infeasible_cost(
 
     Computes an infeasible cost `M` such that `-M < min_x f(x)` almost always,
         so that feasible points are preferred.
+
+    Note: the only difference between this method and the botorch version is that
+    this computes the infeasibility cost separately for each objective. Additional
+    care would need to be taken with this if a batched model were used (e.g. we
+    would need to take a min over all batch dims to replicate how batched models
+    are handled by botorch's `get_infeasible_cost`).
 
     Args:
         X: A `n x d` Tensor of `n` design points to use in evaluating the
