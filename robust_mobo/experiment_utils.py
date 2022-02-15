@@ -929,11 +929,11 @@ class MVaRHV(Module):
 def get_problem(name: str) -> MultiObjectiveTestProblem:
     r"""Initialize the test function."""
     if name == "gmm2":
-        return GMM(negate=True, num_objectives=2)
+        return GMM(num_objectives=2)
     elif name == "gmm3":
-        return GMM(negate=True, num_objectives=3)
+        return GMM(num_objectives=3)
     elif name == "gmm4":
-        return GMM(negate=True, num_objectives=4)
+        return GMM(num_objectives=4)
     elif name == "welded_beam":
         return WeldedBeam(negate=True)
     elif name == "constrained_branin_currin":
