@@ -306,8 +306,8 @@ class FeasibilityWeightedMCMultiOutputObjective(MCMultiOutputObjective):
             objective = lambda Y, X: Y
         self.objective = objective
 
-    def forward(self, Y: Tensor, X: Optional[Tensor] = None) -> Tensor:
-        return self.objective(self.apply_feasibility_weights(Y), X=X)
+    def forward(self, samples: Tensor, X: Optional[Tensor] = None) -> Tensor:
+        return self.objective(self.apply_feasibility_weights(samples), X=X)
 
 
 def get_objective_after_feasibility_weighting(
