@@ -356,7 +356,7 @@ def get_infeasible_cost(
     this computes the infeasibility cost separately for each objective. Additional
     care would need to be taken with this if a batched model were used (e.g. we
     would need to take a min over all batch dims to replicate how batched models
-    are handled the botorch's get_infeasible_cost).
+    are handled by botorch's `get_infeasible_cost`).
 
     Args:
         X: A `n x d` Tensor of `n` design points to use in evaluating the
