@@ -349,8 +349,6 @@ class TestExperimentUtils(TestCase):
             "ref_ch-var-ts",
             "ref_mvar_nehvi_rff",
             "ref_mvar_nehvi",
-            "sobol",
-            "cas",
         ]
         for label in labels:
             if label == "ch-var-ucb":

@@ -705,6 +705,7 @@ def get_cas(
     Returns:
         An ExpectedCoverageImprovement acquisition function.
     """
+    assert isinstance(model, ModelListGP)
     input_dim = model.models[0].train_inputs[0].shape[-1]
     standard_bounds = torch.zeros(2, input_dim, **tkwargs)
     standard_bounds[1] = 1.0
