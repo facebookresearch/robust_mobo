@@ -265,7 +265,7 @@ class qNoisyExpectedImprovement(MCAcquisitionFunction):
         self._set_sampler(q=q, posterior=posterior)
         n_w = posterior.event_shape[-2] // X_full.shape[-2]
         new_samples = self._get_f_X_samples(posterior=posterior, q=n_w * q)
-        new_obj = self.objective(new_samples, X=X_full)
+        new_obj = self.objective(new_samples, X=X_full[..., -q:, :])
         new_obj_max_values = new_obj.max(dim=-1).values
         view_shape = torch.Size(
             self.baseline_obj_max_values.shape
