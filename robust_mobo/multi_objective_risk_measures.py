@@ -1,7 +1,13 @@
+#!/usr/bin/env python3
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+#
+# This source code is licensed under the MIT license found in the
+# LICENSE file in the root directory of this source tree.
+
+r"""
+Multi-output risk measures such as expectation.
 """
-This is used for customizing the MO risk measures and adding new ones that
-are not available on the BoTorch version, such as expectation.
-"""
+
 from math import ceil
 from typing import Optional, List
 

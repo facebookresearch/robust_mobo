@@ -1,7 +1,13 @@
-r"""The main script to run the experiments with.
-Currently supports Ch-VaR-NEI, Ch-VaR-UCB, and qNParEGO.
-Constraint support is not yet implemented.
+#!/usr/bin/env python3
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+#
+# This source code is licensed under the MIT license found in the
+# LICENSE file in the root directory of this source tree.
+
+r"""
+The main script to run the experiments.
 """
+
 import json
 import os
 import sys
@@ -247,16 +253,17 @@ def main(
                 pr = perturbation_kwargs.get(
                     "std_dev", None
                 ) or perturbation_kwargs.get("delta", None)
-                if pr is None and label == "cas":
-                    raise NotImplementedError
-                pr = torch.tensor(pr, **tkwargs)
-                bounds_range = base_function.bounds[1] - base_function.bounds[0]
-                pr = pr / bounds_range
-                if pr.numel() > 1:
-                    if pr.max() > 1.5 * pr.min():
+                if label == "cas":
+                    if pr is None:
                         raise NotImplementedError
-                    else:
-                        pr = pr.min()
+                    pr = torch.tensor(pr, **tkwargs)
+                    bounds_range = base_function.bounds[1] - base_function.bounds[0]
+                    pr = pr / bounds_range
+                    if pr.numel() > 1:
+                        if pr.max() > 1.5 * pr.min():
+                            raise NotImplementedError
+                        else:
+                            pr = pr.min()
 
                 acq_func = get_acqf(
                     label=label,

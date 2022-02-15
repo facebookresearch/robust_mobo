@@ -1,4 +1,12 @@
-r"""Some utilities to help reduce the boilerplate code in the experiments."""
+#!/usr/bin/env python3
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+#
+# This source code is licensed under the MIT license found in the
+# LICENSE file in the root directory of this source tree.
+
+r"""
+Utilities for experiments.
+"""
 
 from typing import Callable, Dict, Optional, Tuple, Union, List
 
@@ -26,6 +34,7 @@ from botorch.models.transforms.outcome import Standardize
 from botorch.sampling.samplers import MCSampler, SobolQMCNormalSampler
 from botorch.test_functions.base import MultiObjectiveTestProblem
 from botorch.test_functions.multi_objective import ConstrainedBraninCurrin, WeldedBeam
+from botorch.test_functions.multi_objective import DiscBrake, GMM, Penicillin, ToyRobust
 from botorch.utils import apply_constraints
 from botorch.utils.multi_objective import infer_reference_point
 from botorch.utils.multi_objective.box_decompositions import (
@@ -37,12 +46,9 @@ from botorch.utils.sampling import (
     draw_sobol_samples,
     sample_simplex,
 )
-from gpytorch.mlls import SumMarginalLogLikelihood
 from gpytorch.distributions.multivariate_normal import MultivariateNormal
+from gpytorch.mlls import SumMarginalLogLikelihood
 from gpytorch.mlls.exact_marginal_log_likelihood import ExactMarginalLogLikelihood
-from torch import Tensor
-from torch.nn import Module
-
 from robust_mobo.ch_var_ucb import ChVUCB
 from robust_mobo.constraint_active_search import ExpectedCoverageImprovement
 from robust_mobo.input_transform import InputPerturbation
@@ -52,11 +58,9 @@ from robust_mobo.monte_carlo import (
 )
 from robust_mobo.multi_objective_risk_measures import MultiOutputExpectation, MVaR
 from robust_mobo.rffs import get_gp_sample_w_transforms
+from torch import Tensor
+from torch.nn import Module
 from robust_mobo.single_objective_monte_carlo import qNoisyExpectedImprovement
-from robust_mobo.test_functions.disc_brake import DiscBrake
-from robust_mobo.test_functions.gmm import GMM
-from robust_mobo.test_functions.penicillin import Penicillin
-from robust_mobo.test_functions.toy import Toy
 from robust_mobo.utils import (
     get_chebyshev_scalarization,
     get_objective_after_feasibility_weighting,
@@ -939,6 +943,6 @@ def get_problem(name: str) -> MultiObjectiveTestProblem:
     elif name == "penicillin":
         return Penicillin(negate=True)
     elif name == "toy":
-        return Toy()
+        return ToyRobust(negate=True)
     else:
         raise ValueError(f"Unknown function name: {name}!")

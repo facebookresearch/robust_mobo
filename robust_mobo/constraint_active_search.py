@@ -1,4 +1,12 @@
-r"""CAS based on the BoTorch notebook."""
+#!/usr/bin/env python3
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+#
+# This source code is licensed under the MIT license found in the
+# LICENSE file in the root directory of this source tree.
+
+r"""
+CAS based on the BoTorch tutorial.
+"""
 
 import torch
 from botorch.acquisition.monte_carlo import MCAcquisitionFunction
@@ -45,10 +53,8 @@ class ExpectedCoverageImprovement(MCAcquisitionFunction):
         **kwargs,
     ):
         """Expected Coverage Improvement (q=1 required, analytic)
-
         Right now, we assume that all the models in the ModelListGP have
         the same training inputs.
-
         Args:
             model: A ModelListGP object containing models matching the corresponding constraints.
                 All models are assumed to have the same training data.

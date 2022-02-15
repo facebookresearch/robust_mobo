@@ -1,3 +1,9 @@
+#!/usr/bin/env python3
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+#
+# This source code is licensed under the MIT license found in the
+# LICENSE file in the root directory of this source tree.
+
 import math
 from unittest import TestCase
 
@@ -5,7 +11,6 @@ import torch
 from botorch.acquisition.risk_measures import VaR
 from botorch.models import SingleTaskGP, ModelListGP
 from botorch.utils.transforms import normalize
-
 from robust_mobo.ch_var_ucb import ChVUCB
 from robust_mobo.input_transform import InputPerturbation
 
