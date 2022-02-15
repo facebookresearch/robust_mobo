@@ -339,27 +339,18 @@ class TestExperimentUtils(TestCase):
         bounds[1] = 1.0
         labels = [
             "ch-var-ucb",
-            "aug_ch-var-nei",
-            "ch-var-nei",
-            "ch-var-ts",
             "nparego",
-            "independent_var_nparego",
             "expectation_nparego",
-            "expectation_ts",
             "nehvi",
             "expectation_nehvi",
-            "independent_var_nehvi",
-            "ts",
             "nehvi_rff",
             "expectation_nehvi_rff",
-            "independent_var_nehvi_rff",
-            "mvar_nehvi_rff",
-            "mvar_nehvi",
-            "ref_aug_ch-var-nei",
             "ref_ch-var-nei",
             "ref_ch-var-ts",
             "ref_mvar_nehvi_rff",
             "ref_mvar_nehvi",
+            "sobol",
+            "cas",
         ]
         for label in labels:
             if label == "ch-var-ucb":
@@ -421,7 +412,7 @@ class TestExperimentUtils(TestCase):
                     self.assertEqual(acqf(x[:2].unsqueeze(-2)).shape, torch.Size([2]))
 
             # test constraints for nehvi
-            if "nehvi" in label and "anehvi" not in label:
+            if "nehvi" in label:
                 with mock.patch(
                     "robust_mobo.utils.apply_constraints",
                     wraps=apply_constraints,
