@@ -2,14 +2,17 @@
 
 # Robust Multi-Objective Bayesian Optimization Under Input Noise
 
-This is the code associated with the paper "Robust Multi-Objective Bayesian Optimization Under Input Noise."
+This is the code associated with the paper "[Robust Multi-Objective Bayesian Optimization Under Input Noise](https://arxiv.org/abs/2202.07549)."
 
 Please cite our work if you find it useful.
 
     @misc{daulton2022robust,
-          title={Robust Multi-Objective Bayesian Optimization Under Input Noise}, 
-          author={Samuel Daulton and Sait Cakmak and Maximilian Balandat and Michael A. Osborne and Enlu Zhou and Eytan Bakshy},
-          year={2022}
+      title={Robust Multi-Objective Bayesian Optimization Under Input Noise}, 
+      author={Samuel Daulton and Sait Cakmak and Maximilian Balandat and Michael A. Osborne and Enlu Zhou and Eytan Bakshy},
+      year={2022},
+      eprint={2202.07549},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG}
     }
 
 ## Getting started
