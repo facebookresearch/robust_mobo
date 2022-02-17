@@ -15,6 +15,7 @@ from botorch.acquisition.multi_objective.multi_output_risk_measures import (
 from botorch.acquisition.risk_measures import VaR
 from botorch.models import SingleTaskGP, FixedNoiseGP, ModelListGP
 from botorch.models.deterministic import DeterministicModel
+from botorch.models.transforms.input import InputPerturbation
 from botorch.optim import optimize_acqf
 from botorch.sampling import SobolQMCNormalSampler
 from botorch.utils import apply_constraints
@@ -36,7 +37,6 @@ from robust_mobo.experiment_utils import (
     get_constraint_indexer,
     get_infeasible_cost,
 )
-from robust_mobo.input_transform import InputPerturbation
 from robust_mobo.monte_carlo import (
     qNoisyExpectedHypervolumeImprovement,
     qExpectedHypervolumeImprovement,

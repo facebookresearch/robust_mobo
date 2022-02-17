@@ -30,6 +30,7 @@ from botorch.exceptions.errors import UnsupportedError
 from botorch.models import FixedNoiseGP, SingleTaskGP, ModelListGP
 from botorch.models.gpytorch import GPyTorchModel
 from botorch.models.model import Model
+from botorch.models.transforms.input import InputPerturbation
 from botorch.models.transforms.outcome import Standardize
 from botorch.sampling.samplers import MCSampler, SobolQMCNormalSampler
 from botorch.test_functions.base import MultiObjectiveTestProblem
@@ -51,7 +52,6 @@ from gpytorch.mlls import SumMarginalLogLikelihood
 from gpytorch.mlls.exact_marginal_log_likelihood import ExactMarginalLogLikelihood
 from robust_mobo.ch_var_ucb import ChVUCB
 from robust_mobo.constraint_active_search import ExpectedCoverageImprovement
-from robust_mobo.input_transform import InputPerturbation
 from robust_mobo.monte_carlo import (
     qNoisyExpectedHypervolumeImprovement,
     qExpectedHypervolumeImprovement,

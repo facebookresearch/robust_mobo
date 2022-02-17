@@ -10,9 +10,9 @@ from unittest import TestCase
 import torch
 from botorch.acquisition.risk_measures import VaR
 from botorch.models import SingleTaskGP, ModelListGP
+from botorch.models.transforms.input import InputPerturbation
 from botorch.utils.transforms import normalize
 from robust_mobo.ch_var_ucb import ChVUCB
-from robust_mobo.input_transform import InputPerturbation
 
 
 class TestChVUCB(TestCase):
