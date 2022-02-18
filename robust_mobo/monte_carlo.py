@@ -41,6 +41,7 @@ from botorch.exceptions.warnings import BotorchWarning
 from botorch.models.model import Model
 from botorch.models.model_list_gp_regression import ModelListGP
 from botorch.models.multitask import MultiTaskGP
+from botorch.models.transforms.input import InputPerturbation
 from botorch.posteriors import GPyTorchPosterior
 from botorch.posteriors.posterior import Posterior
 from botorch.sampling.samplers import MCSampler, SobolQMCNormalSampler
@@ -66,7 +67,6 @@ from botorch.utils.transforms import (
     t_batch_mode_transform,
 )
 from gpytorch.utils.errors import NotPSDError, NanError
-from robust_mobo.input_transform import InputPerturbation
 from robust_mobo.utils import prune_inferior_points_multi_objective
 from torch import Tensor
 
