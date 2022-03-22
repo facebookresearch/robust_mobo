@@ -7,7 +7,7 @@ This is the code associated with the paper "[Robust Multi-Objective Bayesian Opt
 Please cite our work if you find it useful.
 
     @misc{daulton2022robust,
-      title={Robust Multi-Objective Bayesian Optimization Under Input Noise}, 
+      title={Robust Multi-Objective Bayesian Optimization Under Input Noise},
       author={Samuel Daulton and Sait Cakmak and Maximilian Balandat and Michael A. Osborne and Enlu Zhou and Eytan Bakshy},
       year={2022},
       eprint={2202.07549},
@@ -16,14 +16,6 @@ Please cite our work if you find it useful.
     }
 
 ## Getting started
-
-Parts of this code relies on latest additions to BoTorch, which are not available
-on the current (at the time of writing) `0.6.0` release. Unless a later version has been
-released, first use the following to install from the main branch:
-```bash
-pip install --upgrade git+https://github.com/cornellius-gp/gpytorch.git
-pip install --upgrade git+https://github.com/pytorch/botorch.git
-```
 
 From the base `robust_mobo` directory run:
 
@@ -34,7 +26,7 @@ From the base `robust_mobo` directory run:
 The code is structured in three parts.
 - The utilities for constructing the acquisition functions and other helper methods are defined in `robust_mobo/`.
 - The notebooks for analyzing the experiment output and constructing the plots presented in the paper are found under `notebooks/`.
-- The experiments are found in and ran from within `experiments/experiment_v1/`. The `main.py` is used to run the experiments, and the experiment configurations are found in the `config.json` file of each sub-directory. 
+- The experiments are found in and ran from within `experiments/experiment_v1/`. The `main.py` is used to run the experiments, and the experiment configurations are found in the `config.json` file of each sub-directory.
 
 The individual experiment outputs were left out to avoid inflating the file size. An aggregate output of all experiments is presented in `notebooks/final_outputs.csv`.
 

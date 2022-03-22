@@ -9,7 +9,7 @@ from setuptools import setup, find_packages
 requirements = [
     "torch",
     "gpytorch",
-    "botorch>=0.6",
+    "botorch>=0.6.2",
     "scipy",
     "jupyter",
     "matplotlib",
