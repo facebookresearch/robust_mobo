@@ -15,6 +15,7 @@ requirements = [
     "matplotlib",
     "sklearn",
     "joblib",
+    "pymoo",
 ]
 
 dev_requires = [
