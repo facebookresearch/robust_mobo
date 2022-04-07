@@ -26,6 +26,7 @@ from botorch.utils.transforms import unnormalize
 from botorch.test_functions.base import ConstrainedBaseTestProblem
 from torch import Tensor
 from pymoo.algorithms.moo.nsga2 import NSGA2
+from pymoo.core.evaluator import set_cv
 
 from robust_mobo.experiment_utils import (
     generate_initial_data,
@@ -35,6 +36,7 @@ from robust_mobo.experiment_utils import (
     get_acqf,
     MVaRHV,
 )
+from robust_mobo.nsgaii_utils import get_nsgaii
 import gpytorch.settings as gpt_settings
 
 
@@ -224,6 +226,7 @@ def main(
     if label == "nsgaii":
         nsgaii_algorithm = get_nsgaii(X_init=X, Y_init=Y, base_function=base_function)
         # set iterations based on nsga-ii population size
+        assert batch_size * iterations % nsgaii_algorithm.pop_size == 0
         iterations = batch_size * iterations // nsgaii_algorithm.pop_size
 
     for i in range(existing_iterations, iterations):
@@ -246,17 +249,19 @@ def main(
             if Y.shape[0] > n_initial_points:
                 last_X = pop.get("X")
                 n_new_points = last_X.shape[0]
-                pop.set("F", Y[:, -n_new_points:].cpu().numpy())
+                # pymoo minimizes objectives
+                pop.set("F", -new_y[:, :base_function.num_objectives].cpu().numpy())
 
                 # for constraints
                 if is_constrained:
-                    pop.set("G", Y_con[:, -n_new_points:].cpu().numpy())
+                    # negative constraint slack implies feasibility
+                    pop.set("G", -new_y[:, base_function.num_objectives:].cpu().numpy())
                 # this line is necessary to set the CV and feasbility status - even for unconstrained
                 set_cv(pop)
                 # returned the evaluated individuals which have been evaluated or even modified
-            nsgaii_algorithm.tell(infills=pop)
+                nsgaii_algorithm.tell(infills=pop)
             # generate new candidates
-            nsgaii_algorithm.ask()
+            pop = nsgaii_algorithm.ask()
             candidates = torch.from_numpy(pop.get("X")).to(X)
         else:
             # Generate the perturbations.
