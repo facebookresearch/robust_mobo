@@ -2,18 +2,29 @@
 
 # Robust Multi-Objective Bayesian Optimization Under Input Noise
 
-This is the code associated with the paper "[Robust Multi-Objective Bayesian Optimization Under Input Noise](https://arxiv.org/abs/2202.07549)."
+This is the code associated with the paper "[Robust Multi-Objective Bayesian Optimization Under Input Noise](https://proceedings.mlr.press/v162/daulton22a.html)."
+
+For a simple demo, check out our [tutorial in BoTorch](https://github.com/pytorch/botorch/blob/main/tutorials/robust_multi_objective_bo.ipynb).
 
 Please cite our work if you find it useful.
 
-    @inproceedings{daulton2022robust,
-      title = {Robust Multi-Objective Bayesian Optimization Under Input Noise},
-      author = {Samuel Daulton and Sait Cakmak and Maximilian Balandat and Michael A. Osborne and Enlu Zhou and Eytan Bakshy},
-      booktitle = {Proceedings of the 39th International Conference on Machine Learning},
-      publisher = {PMLR},
-      series = {Proceedings of Machine Learning Research},
-      year = {2022},
+    
+    @InProceedings{pmlr-v162-daulton22a,
+      title = 	 {Robust Multi-Objective {B}ayesian Optimization Under Input Noise},
+      author =       {Daulton, Samuel and Cakmak, Sait and Balandat, Maximilian and Osborne, Michael A. and Zhou, Enlu and Bakshy, Eytan},
+      booktitle = 	 {Proceedings of the 39th International Conference on Machine Learning},
+      pages = 	 {4831--4866},
+      year = 	 {2022},
+      editor = 	 {Chaudhuri, Kamalika and Jegelka, Stefanie and Song, Le and Szepesvari, Csaba and Niu, Gang and Sabato, Sivan},
+      volume = 	 {162},
+      series = 	 {Proceedings of Machine Learning Research},
+      month = 	 {17--23 Jul},
+      publisher =    {PMLR},
+      pdf = 	 {https://proceedings.mlr.press/v162/daulton22a/daulton22a.pdf},
+      url = 	 {https://proceedings.mlr.press/v162/daulton22a.html},
+      abstract = 	 {Bayesian optimization (BO) is a sample-efficient approach for tuning design parameters to optimize expensive-to-evaluate, black-box performance metrics. In many manufacturing processes, the design parameters are subject to random input noise, resulting in a product that is often less performant than expected. Although BO methods have been proposed for optimizing a single objective under input noise, no existing method addresses the practical scenario where there are multiple objectives that are sensitive to input perturbations. In this work, we propose the first multi-objective BO method that is robust to input noise. We formalize our goal as optimizing the multivariate value-at-risk (MVaR), a risk measure of the uncertain objectives. Since directly optimizing MVaR is computationally infeasible in many settings, we propose a scalable, theoretically-grounded approach for optimizing MVaR using random scalarizations. Empirically, we find that our approach significantly outperforms alternative methods and efficiently identifies optimal robust designs that will satisfy specifications across multiple metrics with high probability.}
     }
+
 
 ## Getting started
 
